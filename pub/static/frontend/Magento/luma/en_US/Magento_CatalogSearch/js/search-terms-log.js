@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-catalog-search/view/frontend/web/js/search-terms-log.js

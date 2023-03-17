@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-review/view/frontend/web/js/process-reviews.js

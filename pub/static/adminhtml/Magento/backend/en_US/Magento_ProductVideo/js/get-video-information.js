@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-product-video/view/adminhtml/web/js/get-video-information.js

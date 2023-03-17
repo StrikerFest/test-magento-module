@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-product-video/view/frontend/web/js/fotorama-add-video-events.js

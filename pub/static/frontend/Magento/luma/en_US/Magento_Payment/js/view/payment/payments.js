@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-payment/view/frontend/web/js/view/payment/payments.js

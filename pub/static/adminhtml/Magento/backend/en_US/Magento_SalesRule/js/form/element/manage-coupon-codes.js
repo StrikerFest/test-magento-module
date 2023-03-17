@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-sales-rule/view/base/web/js/form/element/manage-coupon-codes.js

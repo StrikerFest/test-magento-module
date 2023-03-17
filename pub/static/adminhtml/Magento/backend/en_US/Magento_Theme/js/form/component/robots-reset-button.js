@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-theme/view/adminhtml/web/js/form/component/robots-reset-button.js

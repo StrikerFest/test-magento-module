@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-variable/view/adminhtml/web/js/config-directive-generator.js

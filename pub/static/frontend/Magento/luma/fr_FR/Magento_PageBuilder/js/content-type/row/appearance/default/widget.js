@@ -1,1 +1,0 @@
-/home/strikerfest/workplace/test4/vendor/magento/module-page-builder/view/base/web/js/content-type/row/appearance/default/widget.js
