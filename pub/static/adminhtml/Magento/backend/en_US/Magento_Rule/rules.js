@@ -1,0 +1,1 @@
+/home/strikerfest/workplace/test4/vendor/magento/module-rule/view/adminhtml/web/rules.js

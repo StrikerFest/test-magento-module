@@ -1,0 +1,1 @@
+/home/strikerfest/workplace/test4/lib/web/fotorama/fotorama.js

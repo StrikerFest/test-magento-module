@@ -1,0 +1,1 @@
+/home/strikerfest/workplace/test4/vendor/magento/module-page-builder/view/adminhtml/web/js/content-type/text/wysiwyg/tinymce/config-modifier.js

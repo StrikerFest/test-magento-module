@@ -1,0 +1,1 @@
+/home/strikerfest/workplace/test4/vendor/magento/module-admin-analytics/view/adminhtml/web/js/release-notification/modal/component-mixin.js

@@ -1,0 +1,1 @@
+/home/strikerfest/workplace/test4/vendor/magento/module-page-builder/view/base/web/js/resource/jarallax/jarallax.js
