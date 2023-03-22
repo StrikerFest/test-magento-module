@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author Trinhtheanh789
+  ~ Copyright (c) 2023.  Trinhtheanh789. All rights reserved.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Indexer/etc/indexer.xsd">  <indexer id="example_indexer" view_id="example_indexer"
+                                                                                                 class="Tigren\HelloWorld\Model\Indexer\Test">
+    <title translate="true">HelloWorld Indexer</title>
+    <description translate="true">HelloWorld of custom indexer</description>  </indexer>
+</config>

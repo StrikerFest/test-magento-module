@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author Trinhtheanh789
+  ~ Copyright (c) 2023.  Trinhtheanh789. All rights reserved.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">  <event name="example_hello_world_display_text">
+    <observer name="hello_world_display"
+              instance="Tigren\Example\Observer\ChangeDisplayText" />
+</event>
+</config>
