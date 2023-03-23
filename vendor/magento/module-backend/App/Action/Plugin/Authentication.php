@@ -230,6 +230,8 @@ class Authentication
             // The requested URL has an invalid secret key and therefore redirecting to this URL
             // will cause a security vulnerability.
             $requestUri = $this->_url->getUrl($this->_url->getStartupPageUrl());
+//                        $requestUri = $this->_url->getUrl('*/*/',['current' => true]);
+
         } elseif ($request) {
             $requestUri = $request->getRequestUri();
         }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2023.  Magento, Inc. All rights reserved.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <!--Use router 'standard' for frontend route-->
+    <router id="admin">
+        <!--Define a custom route with id and frontName-->
+        <route id="faq" frontName="faq">
+            <!--The module which this route match to-->
+            <module name="Tigren_Faq" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>
