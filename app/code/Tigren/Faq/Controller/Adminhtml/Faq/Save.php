@@ -20,33 +20,51 @@ class Save extends Action implements HttpPostActionInterface
         Context $context,
         private FaqFactory $faqFactory,
         private FaqResource $resource
-    ){
+    ) {
         parent::__construct($context);
     }
+
     public function execute(): ResultInterface
     {
         // TODO: Implement execute() method.
         $data = $this->getRequest()->getPostValue();
         $resultRedirect = $this->resultRedirectFactory->create();
-        if($data){
-            $model =$this->faqFactory->create();
-            if(empty($data['faq_id'])){
+        if ($data) {
+            $model = $this->faqFactory->create();
+            // Nếu id chưa được đặt - Id = null
+            if (empty($data['faq_id'])) {
                 $data['faq_id'] = null;
+            }
+            // Status mặc định là Pending - Nếu có câu trả lời nó sẽ chuyển sang Answered
+            $data['status'] = 'Pending';
+            if (!empty($data['answer'])) {
+                $data['status'] = 'Answered';
+            }
+
+            // Position
+            // Pending = 0 (hiển thị đầu tiên bên admin)
+            // Answered = 1 (default)
+            // Answered = bất cứ số nào > 1 (số to hơn sẽ được hiển thị đầu tiên bên khách hàng)
+            if(empty($data['position'])){
+                switch($data['status']){
+                    case 'Answered':
+                        $data['position'] = 1;
+                        break;
+                    case 'Pending':
+                        $data['position'] = 0;
+                }
             }
 
             $model->setData($data);
 
             try {
-            $this->resource->save($model);
-//            dd($this->resource);
-            $this->messageManager->addSuccessMessage(__("Faq saved"));
-            return $resultRedirect->setPath('*/*/');
-            }
-            catch (LocalizedException $exception){
+                $this->resource->save($model);
+                $this->messageManager->addSuccessMessage(__("Faq saved"));
+                return $resultRedirect->setPath('*/*/');
+            } catch (LocalizedException $exception) {
                 $this->messageManager->addExceptionMessage($exception);
                 die("LocalizedException");
-            }
-            catch (\Throwable $e){
+            } catch (\Throwable $e) {
                 $this->messageManager->addErrorMessage(__("IT DIED saving faq"));
                 die("Throwable");
             }

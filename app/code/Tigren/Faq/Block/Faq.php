@@ -61,8 +61,10 @@ class Faq extends \Magento\Framework\View\Element\Template
         $faqFactory = $this->_faqFactory->create();
         $collection = $faqFactory->getCollection();
 
-//        dd($collection->getData());
+        $collection->getSelect()->order('position DESC');
         $data = $collection->getData();
+//        dd($data);
+//        $collection->setOrder('position', 'DESC');
 
         return $data;
     }

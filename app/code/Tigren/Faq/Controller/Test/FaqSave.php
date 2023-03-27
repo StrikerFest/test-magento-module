@@ -49,10 +49,17 @@ class FaqSave extends Action
             if (empty($data['faq_id'])) {
                 $data['faq_id'] = null;
             }
+            if(empty($data['question']) || empty($data['author'])){
+                $this->messageManager->addErrorMessage(__("Please fill the form in completion"));
+                $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+                $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+                return $resultRedirect;
+
+            }
             $model->setData($data);
             $this->resource->save($model);
             //            dd($this->resource);
-            $this->messageManager->addSuccessMessage(__("Faq saved"));
+            $this->messageManager->addSuccessMessage(__("Question added successfully"));
 //            return $resultRedirect->setPath('*/*/');
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
 

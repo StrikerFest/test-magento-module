@@ -59,7 +59,7 @@
             </argument>
             <settings>
                 <dataType>text</dataType>
-<!--                <visible>false</visible>-->
+                <visible>false</visible>
                 <dataScope>faq_id</dataScope>
             </settings>
         </field>
@@ -77,6 +77,7 @@
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
+                <disabled>true</disabled>
             </settings>
         </field>
         <field name="faq_author">
@@ -89,6 +90,9 @@
                     <item name="dataScope" xsi:type="string">author</item>
                 </item>
             </argument>
+            <settings>
+                <disabled>true</disabled>
+            </settings>
         </field>
         <field name="faq_answer">
             <argument name="data" xsi:type="array">
@@ -111,6 +115,9 @@
                     <item name="dataScope" xsi:type="string">status</item>
                 </item>
             </argument>
+            <settings>
+                <visible>false</visible>
+            </settings>
         </field>
         <field name="faq_product">
             <argument name="data" xsi:type="array">
