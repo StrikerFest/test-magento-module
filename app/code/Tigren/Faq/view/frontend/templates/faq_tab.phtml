@@ -1,0 +1,132 @@
+<?php
+/*
+ * Copyright (c) 2023.  Magento, Inc. All rights reserved.
+ */
+
+
+$blockObj = $block->getLayout()->createBlock('Tigren\Faq\Block\Display');
+$blockFaq = $block->getLayout()->createBlock('Tigren\Faq\Block\Faq');
+//echo $blockObj->sayFaq();
+//dd($block->getProduct()['entity_id']);
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+?>
+<?php if ($_faq = $blockFaq->getFaqData()) : ?>
+
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
+            <tbody>
+            <?php $check = 0 ?>
+
+            <?php foreach ($_faq as $_data) : ?>
+                <?php if ($block->getProduct()['entity_id'] == $_data['product']) : ?>
+                    <?php $check = 1; ?>
+                    <tr>
+                        <th>Question</th>
+                        <td><?= $_data['question'] ?></td>
+                        <th>Author</th>
+                        <td><?= $_data['author'] ?></td>
+                    </tr>
+                    <tr>
+                        <th>Answer</th>
+                        <td><?= $_data['answer'] ?></td>
+                        <th>Status</th>
+                        <td><?= $_data['status'] ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <hr>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($check == 0): ?>
+                <h1>No question has been asked yet. Ask one now !!</h1>
+            <?php endif; ?>
+            </tbody>
+        </table>
+        <!--        <a href="faq/faq/create">-->
+        <!--            <button class="btn btn-primary">Ask a question</button>-->
+        <!--        </a>-->
+        <!--        <form action="--><?php //echo $blockFaq->getAction() ?><!--" method="post">-->
+        <!--            <div class="field review-field-nickname required">-->
+        <!--                <label for="nickname_field" class="label"><span>-->
+        <?php //= $block->escapeHtml(__('Name')) ?><!--</span></label>-->
+        <!--                <div class="control">-->
+        <!--                    <input type="hidden" name="product" id="product" class="input-text"-->
+        <!--                           data-validate="{required:true}" value="-->
+        <?php //= $block->getProduct()['entity_id'] ?><!--" />-->
+        <!--                    <input type="text" name="author" id="author" class="input-text"-->
+        <!--                           data-validate="{required:true}"  />-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="field review-field-text required">-->
+        <!--                <label for="review_field" class="label"><span>-->
+        <?php //= $block->escapeHtml(__('Question')) ?><!--</span></label>-->
+        <!--                <div class="control">-->
+        <!--                    <textarea name="question" id="question" cols="5" rows="3" data-validate="{required:true}"-->
+        <!--                              ></textarea>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            </fieldset>-->
+        <!--            <div class="actions-toolbar review-form-actions">-->
+        <!--                <div class="primary actions-primary">-->
+        <!--                    <button type="submit" class="action submit primary">-->
+        <!--                        <span>-->
+        <?php //= $block->escapeHtml(__('Submit question')) ?><!--</span></button>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </form>-->
+
+        <form class="form" action="faq/test/faqsave" method="post" id="faqForm">
+
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?php echo __('Test Form') ?></span></legend>
+                <br>
+                <div class="field required">
+                    <label for="author" class="label">
+                        <span><?php echo __('Author') ?></span>
+                    </label>
+
+
+                    <input type="hidden" id="status"
+                           name="status"
+                           class="input-text"
+                           value="Pending"/>
+                    <input type="hidden" id="product"
+                           name="product"
+                           class="input-text"
+                           value="<?= $block->getProduct()['entity_id'] ?>"/>
+                    <div class=" control">
+                    <input type="text" id="author"
+                           name="author"
+                           class="input-text">
+                </div>
+                    <label for="question" class="label">
+                        <span><?php echo __('Question') ?></span>
+                    </label>
+                <div class="control">
+                    <input type="text" id="question"
+                           name="question"
+                           class="input-text">
+                </div>
+    </div>
+    </fieldset>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */
+            echo __('Submit') ?>">
+                <span><?php /* @escapeNotVerified */
+                    echo __('Submit') ?></span>
+            </button>
+        </div>
+    </div>
+
+    </form>
+    </div>
+<?php endif; ?>
+<?php

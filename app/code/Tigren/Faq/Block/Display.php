@@ -14,6 +14,6 @@ class Display extends \Magento\Framework\View\Element\Template
     }
     public function sayFaq()
     {
-        return __('Faq');
+        return __('Slam my meat');
     }
 }

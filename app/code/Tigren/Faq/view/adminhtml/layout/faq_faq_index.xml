@@ -9,6 +9,7 @@
     <body>
         <referenceContainer name="content">
             <uiComponent name="tigren_faq_grid" />
+<!--            <uiComponent name="faq_form" />-->
         </referenceContainer>
     </body>
 </page>

@@ -29,7 +29,8 @@ class Index extends \Magento\Backend\App\Action
         //Call page factory to render layout and page content
         $resultPage = $this->resultPageFactory->create();
         //Set the menu which will be active for this page
-//        $resultPage->setActiveMenu('Tigren_Faq::faq_manage');
+
+        $resultPage->setActiveMenu('Tigren_Faq::faq_manage');
         //Set the header title of grid
         $resultPage->getConfig()->getTitle()->prepend(__('Manage Faqs'));
         //Add bread crumb
