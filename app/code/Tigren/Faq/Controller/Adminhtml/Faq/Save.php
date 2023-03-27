@@ -35,10 +35,11 @@ class Save extends Action implements HttpPostActionInterface
             if (empty($data['faq_id'])) {
                 $data['faq_id'] = null;
             }
-            // Status mặc định là Pending - Nếu có câu trả lời nó sẽ chuyển sang Answered
-            $data['status'] = 'Pending';
-            if (!empty($data['answer'])) {
-                $data['status'] = 'Answered';
+            // Status mặc định là Answered - Nếu ko có câu trả lời nó sẽ chuyển sang Pending và reset position = 0
+            $data['status'] = 'Answered';
+            if (empty($data['answer'])) {
+                $data['status'] = 'Pending';
+                $data['position'] = 0;
             }
 
             // Position
@@ -54,6 +55,7 @@ class Save extends Action implements HttpPostActionInterface
                         $data['position'] = 0;
                 }
             }
+
 
             $model->setData($data);
 

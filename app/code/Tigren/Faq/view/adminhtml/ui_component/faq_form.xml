@@ -77,7 +77,7 @@
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
-                <disabled>true</disabled>
+                <disabled>false</disabled>
             </settings>
         </field>
         <field name="faq_author">
@@ -91,7 +91,7 @@
                 </item>
             </argument>
             <settings>
-                <disabled>true</disabled>
+                <disabled>false</disabled>
             </settings>
         </field>
         <field name="faq_answer">

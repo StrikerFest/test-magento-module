@@ -6,17 +6,17 @@
     <!--form argument-->
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">faq_form.tigren_faq_grid_data_source</item>
-            <item name="deps" xsi:type="string">faq_form.tigren_faq_grid_data_source</item>
+            <item name="provider" xsi:type="string">faq_form_edit.faq_form_edit_data_source</item>
+            <item name="deps" xsi:type="string">faq_form_edit.faq_form_edit_data_source</item>
         </item>
         <item name="label" xsi:type="string" translate="true">Faq Information</item>
         <item name="config" xsi:type="array">
             <item name="dataScope" xsi:type="string">data</item>
-            <item name="namespace" xsi:type="string">faq_form</item>
+            <item name="namespace" xsi:type="string">faq_form_edit</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
-<!--    Form setting -->
+    <!--    Form setting -->
     <settings>
         <buttons>
             <button name="save" class="Tigren\Faq\Block\Adminhtml\Faq\Edit\SaveButton" />
@@ -24,12 +24,12 @@
         </buttons>
     </settings>
     <!--    DataSource-->
-    <dataSource name="tigren_faq_grid_data_source">
+    <dataSource name="faq_form_edit_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Tigren\Faq\Model\Faq\DataProvider</argument>
-            <argument name="name" xsi:type="string">tigren_faq_grid_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="name" xsi:type="string">faq_form_edit_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">faq_id</argument>
+            <argument name="requestFieldName" xsi:type="string">faq_id</argument>
         </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
@@ -44,21 +44,24 @@
     <fieldset name="faq_details">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
-                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="collapsible" xsi:type="boolean">false</item>
                 <item name="label" xsi:type="string" translate="true">Faq Details</item>
                 <item name="sortOrder" xsi:type="number">20</item>
             </item>
         </argument>
-        <field name="faq_id">
+        <field name="faq_id" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Faq Id</item>
-                    <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">faq</item>
-                    <item name="dataScope" xsi:type="string">faq_id</item>
+                    <!--                    <item name="dataScope" xsi:type="string">faq_id</item>-->
                 </item>
             </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>faq_id</dataScope>
+            </settings>
         </field>
         <field name="faq_question">
             <argument name="data" xsi:type="array">
@@ -66,10 +69,16 @@
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Faq Question</item>
                     <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="source" xsi:type="string">faq</item>
+                    <item name="source" xsi:type="string">type</item>
                     <item name="dataScope" xsi:type="string">question</item>
                 </item>
             </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <disabled>true</disabled>
+            </settings>
         </field>
         <field name="faq_author">
             <argument name="data" xsi:type="array">
@@ -81,6 +90,9 @@
                     <item name="dataScope" xsi:type="string">author</item>
                 </item>
             </argument>
+            <settings>
+                <disabled>true</disabled>
+            </settings>
         </field>
         <field name="faq_answer">
             <argument name="data" xsi:type="array">
@@ -103,6 +115,9 @@
                     <item name="dataScope" xsi:type="string">status</item>
                 </item>
             </argument>
+            <settings>
+                <visible>false</visible>
+            </settings>
         </field>
         <field name="faq_product">
             <argument name="data" xsi:type="array">
