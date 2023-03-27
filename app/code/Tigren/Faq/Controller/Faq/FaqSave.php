@@ -5,7 +5,7 @@
  * @license   Open Software License ("OSL") v. 3.0
  */
 
-namespace Tigren\Faq\Controller\Test;
+namespace Tigren\Faq\Controller\Faq;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
@@ -44,7 +44,6 @@ class FaqSave extends Action
     public function execute(): ResultInterface
     {
         $data = $this->getRequest()->getPostValue();
-
         $resultRedirect = $this->resultRedirectFactory->create();
         if($data) {
             $model = $this->faqFactory->create();

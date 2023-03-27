@@ -23,7 +23,7 @@
     <settings>
         <buttons>
             <button name="save" class="Tigren\Faq\Block\Adminhtml\Faq\Edit\SaveButton" />
-            <button name="back" class="Tigren\Faq\Block\Adminhtml\Faq\Edit\BackButton" />
+<!--            <button name="back" class="Tigren\Faq\Block\Adminhtml\Faq\Edit\BackButton" />-->
         </buttons>
     </settings>
     <!--    DataSource-->
