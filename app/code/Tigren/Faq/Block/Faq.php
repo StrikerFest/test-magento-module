@@ -8,6 +8,7 @@ namespace Tigren\Faq\Block;
 
 use Magento\Framework\Phrase;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Tigren\Faq\Helper\Data;
 
 class Faq extends \Magento\Framework\View\Element\Template
 {
@@ -21,12 +22,15 @@ class Faq extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \Tigren\Faq\Model\FaqFactory $faqFactory,
         PriceCurrencyInterface $priceCurrency,
+        Data $helper
     ) {
         $this->priceCurrency = $priceCurrency;
         $this->_faqFactory = $faqFactory;
         $this->_coreRegistry = $registry;
+        $this->helper = $helper;
         parent::_construct($context);
     }
+
 
     public function _prepareLayout()
     {
@@ -37,6 +41,12 @@ class Faq extends \Magento\Framework\View\Element\Template
         //        }
         //            exit;
     }
+
+    public function enableModule(): bool
+    {
+        return (boolean) $this->helper->isModuleEnabled();
+    }
+
 
     public function getProduct()
     {

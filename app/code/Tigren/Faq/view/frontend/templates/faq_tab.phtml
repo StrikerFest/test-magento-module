@@ -4,17 +4,18 @@
  */
 
 
-$blockObj = $block->getLayout()->createBlock('Tigren\Faq\Block\Display');
-$blockFaq = $block->getLayout()->createBlock('Tigren\Faq\Block\Faq');
-//echo $blockObj->sayFaq();
-//dd($block->getProduct()['entity_id']);
+use Tigren\Faq\Helper\Data;
+
 ?>
 <?php
-$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$blockObj = $block->getLayout()->createBlock('Tigren\Faq\Block\Display');
+$blockFaq = $block->getLayout()->createBlock('Tigren\Faq\Block\Faq');
 $_product = $block->getProduct();
+//dd($blockFaq->enableModule());
+$enable = $blockFaq->enableModule();
 ?>
-<?php if ($_faq = $blockFaq->getFaqData()) : ?>
-
+<?php if ($_faq = $blockFaq->getFaqData() ) : ?>
+    <?php if ($enable == true) : ?>
     <div class="additional-attributes-wrapper table-wrapper">
         <table class="data table additional-attributes" id="product-attribute-specs-table">
             <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
@@ -128,5 +129,5 @@ $_product = $block->getProduct();
 
     </form>
     </div>
+    <?php endif; ?>
 <?php endif; ?>
-<?php
