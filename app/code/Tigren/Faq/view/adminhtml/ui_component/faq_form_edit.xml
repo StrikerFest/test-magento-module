@@ -132,6 +132,9 @@
                     <item name="dataScope" xsi:type="string">product</item>
                 </item>
             </argument>
+            <settings>
+                <disabled>true</disabled>
+            </settings>
         </field>
         <field name="faq_position">
             <argument name="data" xsi:type="array">

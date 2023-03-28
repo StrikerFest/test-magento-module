@@ -35,6 +35,7 @@ class Faq extends \Magento\Framework\View\Element\Template
 
     public function _prepareLayout()
     {
+        //        Dùng để test hiển thị dữ liệu - Bỏ qua
         //        $faqFactory = $this->_faqFactory->create();
         //        $collection = $faqFactory->getCollection();
         //        foreach($collection as $item){
@@ -43,12 +44,13 @@ class Faq extends \Magento\Framework\View\Element\Template
         //            exit;
     }
 
+    // Kiểm tra module có được người dùng bật hay tắt
     public function enableModule(): bool
     {
-        return (boolean) $this->helper->isModuleEnabled();
+        return (boolean)$this->helper->isModuleEnabled();
     }
 
-
+    // Lấy dữ liệu sản phẩm
     public function getProduct()
     {
         if (!$this->_product) {
@@ -57,13 +59,7 @@ class Faq extends \Magento\Framework\View\Element\Template
         return $this->_product;
     }
 
-    public function getAction()
-    {
-//        dd($this?->getRequest()->getParam('question'));
-//        return $this->getUrl('faq/faq/save',['_secure' => true]);
-        return 'faq/faq/save';
-    }
-
+    // Lấy dữ liệu faq
     public function getFaqData(array $excludeAttr = [])
     {
         $data = null;
@@ -72,11 +68,10 @@ class Faq extends \Magento\Framework\View\Element\Template
         $faqFactory = $this->_faqFactory->create();
         $collection = $faqFactory->getCollection();
 
+        // Sort dữ liệu lấy được theo thứ tự position
+        // Hiển thị cho người dùng những câu hỏi có ưu tiên cao hơn
         $collection->getSelect()->order('position DESC');
         $data = $collection->getData();
-//        dd($data);
-//        $collection->setOrder('position', 'DESC');
-
         return $data;
     }
 

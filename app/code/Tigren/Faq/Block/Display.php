@@ -8,6 +8,7 @@
 namespace Tigren\Faq\Block;
 class Display extends \Magento\Framework\View\Element\Template
 {
+//    Test class - bỏ qua
     public function
     __construct(\Magento\Framework\View\Element\Template\Context $context)
     {

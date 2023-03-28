@@ -8,14 +8,6 @@
              module="Tigren_Faq"
              sortOrder="10"
              resource="Tigren_Faq::faq" />
-<!--        <add-->
-<!--            id="Tigren_Faq::faq_manage_items"-->
-<!--            title="Manage Items"-->
-<!--            module="Tigren_Faq"-->
-<!--            sortOrder="50"-->
-<!--            parent="Tigren_Faq::faq"-->
-<!--            action="adminhtml/faq"-->
-<!--            resource="Tigren_Faq::faq_  manage_items" />-->
         <add
             id="Tigren_Faq::faq_manage"
             title="Manage Customer FAQ"
@@ -24,14 +16,6 @@
             parent="Tigren_Faq::faq"
             action="faq/faq"
             resource="Tigren_Faq::faq_manage" />
-<!--        <add-->
-<!--            id="Tigren_Faq::faq_edit"-->
-<!--            title="Manage Test Edit"-->
-<!--            module="Tigren_Faq"-->
-<!--            sortOrder="50"-->
-<!--            parent="Tigren_Faq::faq"-->
-<!--            action="faq/faq/edit"-->
-<!--            resource="Tigren_Faq::faq_manage" />-->
         <add id="Tigren_Faq::faq_configuration"
              title="Configuration"
              module="Tigren_Faq"
