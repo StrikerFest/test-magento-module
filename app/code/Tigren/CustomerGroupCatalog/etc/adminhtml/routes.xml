@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <!--Use router 'standard' for frontend route-->
+    <router id="admin">
+        <!--Define a custom route with id and frontName-->
+        <route id="customerGroupCatalog" frontName="customerGroupCatalog">
+            <!--The module which this route match to-->
+            <module name="Tigren_CustomerGroupCatalog" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>

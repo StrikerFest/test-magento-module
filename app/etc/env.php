@@ -72,7 +72,7 @@ return [
         'customer_notification' => 1,
         'config_integration' => 1,
         'config_integration_api' => 1,
-        'full_page' => 0,
+        'full_page' => 1,
         'config_webservilce' => 1,
         'translate' => 1
     ],
