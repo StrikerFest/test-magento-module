@@ -175,8 +175,11 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
                 null,
                 [
+                    'identity' => true,
                     'nullable' => false,
-                    'primary' => true,
+                    'primary' =>
+                        true,
+                    'unsigned' => true
                 ],
                 'Rule Id'
             )->addColumn(

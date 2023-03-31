@@ -8,29 +8,44 @@
 namespace Tigren\CustomerGroupCatalog\Controller\Adminhtml\Rule;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Magento\Framework\Controller\ResultInterface;
-use Magento\Backend\App\Action\Context;
 use Magento\Framework\Exception\LocalizedException;
-use Tigren\CustomerGroupCatalog\Model\RuleFactory;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule as RuleResource;
-use Tigren\CustomerGroupCatalog\Model\RuleStoreFactory;
+use Tigren\CustomerGroupCatalog\Model\ResourceModel\RuleCustomerGroup as RuleCustomerGroupResource;
+use Tigren\CustomerGroupCatalog\Model\ResourceModel\RuleProduct as RuleProductResource;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\RuleStore as RuleStoreResource;
 use Tigren\CustomerGroupCatalog\Model\RuleCustomerGroupFactory;
-use Tigren\CustomerGroupCatalog\Model\ResourceModel\RuleCustomerGroup as RuleCustomerGroupResource;
+use Tigren\CustomerGroupCatalog\Model\RuleFactory;
+use Tigren\CustomerGroupCatalog\Model\RuleProductFactory;
+use Tigren\CustomerGroupCatalog\Model\RuleStoreFactory;
+
 class Save extends Action implements HttpPostActionInterface
 {
+    protected $attributeSet;
 
     public function __construct(
         Context $context,
         private RuleFactory $RuleFactory,
         private RuleResource $resource,
+
         private RuleStoreFactory $RuleStoreFactory,
-        private RuleStoreResource $ruleStoreresource,
+        private RuleStoreResource $ruleStoreResource,
+
         private RuleCustomerGroupFactory $RuleCustomerGroupFactory,
-        private RuleCustomerGroupResource $ruleCustomerGroupresource,
+        private RuleCustomerGroupResource $ruleCustomerGroupResource,
+
+        private RuleProductFactory $RuleProductFactory,
+        private RuleProductResource $ruleProductResource,
+
+        private ProductCollectionFactory $ProductCollection,
+        \Magento\Eav\Api\AttributeSetRepositoryInterface $attributeSet
     ) {
         parent::__construct($context);
+        $this->_productCollection = $ProductCollection;
+        $this->attributeSet = $attributeSet;
     }
 
     public function execute(): ResultInterface
@@ -42,6 +57,10 @@ class Save extends Action implements HttpPostActionInterface
             $model = $this->RuleFactory->create();
             $modelRuleStore = $this->RuleStoreFactory->create();
             $modelRuleCustomerGroup = $this->RuleCustomerGroupFactory->create();
+            $modelRuleProduct = $this->RuleProductFactory->create();
+
+            $productCollection = $this->_productCollection->create();
+
             // Nếu id chưa được đặt - Id = null
             if (empty($data['rule_id'])) {
                 $data['rule_id'] = null;
@@ -54,6 +73,7 @@ class Save extends Action implements HttpPostActionInterface
             unset($dataRule['customer_group_ids']);
             unset($dataRule['store-prepared-for-send']);
             unset($dataRule['store']);
+            unset($dataRule['rule']);
 
             unset($dataRuleStore['name']);
             unset($dataRuleStore['discountAmount']);
@@ -64,6 +84,7 @@ class Save extends Action implements HttpPostActionInterface
             unset($dataRuleStore['customer_group_ids']);
             unset($dataRuleStore['customer_group_ids-prepared-for-send']);
             unset($dataRuleStore['store-prepared-for-send']);
+            unset($dataRuleStore['rule']);
 
             unset($dataRuleCustomerGroup['name']);
             unset($dataRuleCustomerGroup['discountAmount']);
@@ -74,40 +95,68 @@ class Save extends Action implements HttpPostActionInterface
             unset($dataRuleCustomerGroup['store-prepared-for-send']);
             unset($dataRuleCustomerGroup['store']);
             unset($dataRuleCustomerGroup['customer_group_ids-prepared-for-send']);
+            unset($dataRuleCustomerGroup['rule']);
 
-            dd($data);
-
-            $model->setData($dataRule);
+            array_shift($data['rule']['conditions']);
+            $dataCondition = $data['rule']['conditions'];
+            $data += ['conditions' => $dataCondition];
+            unset($data['rule']);
 
             try {
+
+                $model->setData($dataRule);
                 $this->resource->save($model);
                 $ruleId = $model->getId();
-                foreach($dataRuleCustomerGroup['customer_group_ids'] as $RCG){
+                foreach ($dataRuleCustomerGroup['customer_group_ids'] as $RCG) {
                     $saveData = ['rule_customerGroup_id' => null];
                     $saveData += ['rule_id' => $ruleId];
                     $saveData += ['customerGroup_id' => $RCG];
-//                    print('<PRE>' . print_r($saveData) . '</PRE>');
                     $modelRuleCustomerGroup->setData($saveData);
-                    $this->ruleCustomerGroupresource->save($modelRuleCustomerGroup);
+                    $this->ruleCustomerGroupResource->save($modelRuleCustomerGroup);
                 }
-
-                foreach($dataRuleStore['store'] as $RCG){
+                foreach ($dataRuleStore['store'] as $RCG) {
                     $saveData = ['rule_store_id' => null];
                     $saveData += ['rule_id' => $ruleId];
                     $saveData += ['store_id' => $RCG];
-//                    print('<PRE>' . print_r($saveData) . '</PRE>');
                     $modelRuleStore->setData($saveData);
-                    $this->ruleStoreresource->save($modelRuleStore);
+                    $this->ruleStoreResource->save($modelRuleStore);
                 }
-
+                // All product - Give entity id , sku, att set id , type id
+                foreach ($productCollection->getData() as $product) {
+                    // Condition data - Give attribute type, operator, string value with comma
+                    foreach ($data['conditions'] as $conditionItem) {
+                        switch ($conditionItem['attribute']) {
+                            case 'sku' :
+                                $sku = explode(", ", $conditionItem['value']);
+                                foreach ($sku as $skuItem) {
+                                    if ($product['sku'] == $skuItem) {
+                                        // echo '<br>---' . $product['entity_id'];
+                                        $saveData = ['rule_product_id' => null];
+                                        $saveData += ['rule_id' => $ruleId];
+                                        $saveData += ['product_id' => $product['entity_id']];
+                                        $modelRuleProduct->setData($saveData);
+                                        $this->ruleProductResource->save($modelRuleProduct);
+                                    }
+                                }
+                                break;
+                            case 'attribute_set_id':
+                                if ($product['attribute_set_id'] == $conditionItem['value']) {
+                                    // echo '<br>+++' . $product['entity_id'];
+                                    $saveData = ['rule_product_id' => null];
+                                    $saveData += ['rule_id' => $ruleId];
+                                    $saveData += ['product_id' => $product['entity_id']];
+                                    $modelRuleProduct->setData($saveData);
+                                    $this->ruleProductResource->save($modelRuleProduct);
+                                }
+                                break;
+                        }
+                    }
+                }
             } catch (LocalizedException $exception) {
                 $this->messageManager->addExceptionMessage($exception);
-                die("LocalizedException");
             } catch (\Throwable $e) {
                 $this->messageManager->addErrorMessage(__("IT DIED saving rule"));
-                die("Throwable");
             }
-
 
 
             $this->messageManager->addSuccessMessage(__("rule saved"));

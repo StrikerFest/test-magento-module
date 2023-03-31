@@ -169,7 +169,7 @@
             </argument>
         </field>
     </fieldset>
-    <htmlContent name="block_product_edit_tab_conditions" sortOrder="20">
+    <htmlContent name="block_promo_catalog_edit_tab_conditions" sortOrder="20">
         <argument name="data" xsi:type="array">
             <item name="wrapper" xsi:type="array">
                 <item name="label" xsi:type="string" translate="true">Conditions</item>
@@ -184,6 +184,6 @@
                 <componentType>fieldset</componentType>
             </wrapper>
         </settings>
-        <block class="Tigren\CustomerGroupCatalog\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions" name="rule_condition" />
+        <block class="Tigren\CustomerGroupCatalog\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions" name="promo_catalog_edit_tab" />
     </htmlContent>
 </form>

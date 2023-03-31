@@ -150,7 +150,7 @@ class Conditions extends Generic implements TabInterface
             $model->load($id);
         }
         $fieldsetId = 'conditions_fieldset';
-        $formName = 'catalog_rule_form';
+        $formName = 'rule_form';
         $conditionsFieldSetId = $model->getConditionsFieldSetId($formName);
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();
@@ -203,7 +203,7 @@ class Conditions extends Generic implements TabInterface
      * @return \Magento\Framework\Data\Form
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    protected function addTabToForm($model, $fieldsetId = 'conditions_fieldset', $formName = 'catalog_rule_form')
+    protected function addTabToForm($model, $fieldsetId = 'conditions_fieldset', $formName = 'rule_form')
     {
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create();

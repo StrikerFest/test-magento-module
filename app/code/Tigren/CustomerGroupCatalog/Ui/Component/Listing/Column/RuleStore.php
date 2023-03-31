@@ -62,14 +62,16 @@ class RuleStore extends Column
                 foreach ($collection->getData() as $storeI) {
 
                     if ($item['rule_id'] == $storeI['rule_id']) {
+                        if($storeI['store_id'] == 0){
+                            $item += ['store' => 'All store views'];
+                            break;
+                            //                                    return $dataSource;
+                        }
                         foreach ($groups as $group) {
                             $checkStore = 0;
                             $stores = $group->getStores();
                             foreach ($stores as $store) {
-                                if($storeI['store_id'] == 0){
-                                    $item += ['store' => 'All store views'];
-                                    return $dataSource;
-                                }
+
                                 if($storeI['store_id'] == $store->getId() )
                                 {
                                     // Store temp store name
