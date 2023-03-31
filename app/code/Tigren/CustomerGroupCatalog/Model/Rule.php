@@ -17,5 +17,12 @@ class Rule extends \Magento\Framework\Model\AbstractModel implements \Magento\Fr
     {
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
+
+//    RM AFTER
+//    public function getConditionsFieldSetId($formName = '')
+//    {
+//        return $formName . 'rule_conditions_fieldset_' . $this->getId();
+//    }
+
 }
 

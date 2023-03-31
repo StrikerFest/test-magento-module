@@ -17,11 +17,14 @@ class Index extends \Magento\Backend\App\Action
 
     public function __construct(Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Tigren\CustomerGroupCatalog\Model\RuleFactory $ruleFactory)
+        \Tigren\CustomerGroupCatalog\Model\RuleFactory $ruleFactory,
+        \Tigren\CustomerGroupCatalog\Model\AttributeSetList $ASL,
+    )
     {
-        parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->ruleFactory = $ruleFactory;
+        $this->ASL = $ASL;
+        parent::__construct($context);
     }
 
     public function execute()
@@ -34,6 +37,15 @@ class Index extends \Magento\Backend\App\Action
         //Set the header title of grid
         $resultPage->getConfig()->getTitle()->prepend(__('Manage Rules'));
 
+
+        $attributeSetList = $this->ASL->listAttributeSet();
+//        dd($this->ASL);
+//        if ($attributeSetList) {
+//            foreach ($attributeSetList->getItems() as $list) {
+//               print("<pre>". print_r(($list->getData())) . "</pre>");
+//            }
+//        }
+//dd(123);
         return $resultPage;
     }
 

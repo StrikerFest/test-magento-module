@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles" />
+    <body>
+<!--        <referenceContainer name="product.info.details">-->
+<!--            <block class="Tigren\CustomerGroupCatalog\Block\Adminhtml\Rule\Rule" name="rule_field" template="Tigren_CustomerGroupCatalog::rule_display.phtml" group="detailed_info"/>-->
+<!--            &lt;!&ndash;                <argument name="data" xsi:type="array">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <item name="config" xsi:type="array">&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <item name="filter" xsi:type="string">text</item>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <item name="label"&ndash;&gt;-->
+<!--            &lt;!&ndash;                              xsi:type="string" translate="true">Store&ndash;&gt;-->
+<!--            &lt;!&ndash;                        </item>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </item>&ndash;&gt;-->
+<!--            &lt;!&ndash;                </argument>&ndash;&gt;-->
+<!--        </referenceContainer>-->
+        <referenceContainer name="content">
+
+            <uiComponent name="tigren_customerGroupCatalog_grid" />
+
+        </referenceContainer>
+    </body>
+</page>

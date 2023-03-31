@@ -7,8 +7,19 @@
 
 namespace Tigren\CustomerGroupCatalog\Setup;
 
+/**
+ * Class InstallSchema
+ * @package Tigren\CustomerGroupCatalog\Setup
+ * Tigren Solutions <info@tigren.com>
+ */
 class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
 {
+    /**
+     * @param \Magento\Framework\Setup\SchemaSetupInterface $setup
+     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     * @return void
+     * @throws \Zend_Db_Exception
+     */
     public function install(
         \Magento\Framework\Setup\SchemaSetupInterface $setup,
         \Magento\Framework\Setup\ModuleContextInterface $context
@@ -70,38 +81,69 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
             );
         $installer->getConnection()->createTable($table);
 
-
+        // Compound table ( rule - customerGroup )
         $table = $installer->getConnection()
             ->newTable($installer->getTable('Tigren_rule_customer_group'))
             ->addColumn(
+                'rule_customerGroup_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                [
+                    'identity' => true,
+                    'nullable' => false,
+                    'primary' =>
+                        true,
+                    'unsigned' => true
+                ],
+                'Rule Id'
+            )->addColumn(
                 'rule_id',
                 \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
                 null,
                 [
                     'nullable' => false,
-                    'primary' => true,
                 ],
                 'Rule Id'
             )->addColumn(
                 'customerGroup_id',
                 \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
                 null,
-                ['nullable' => false],
+                ['nullable' => false,],
                 'Rule customer group'
+            )->addIndex(
+                $installer->getIdxName(
+                    'rule_customerGroup_id',
+                    ['rule_id', 'customerGroup_id'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
+                ),
+                ['rule_id', 'customerGroup_id'],
+                ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
             )->setComment(
                 'Tigren Rule Customer group'
             );
         $installer->getConnection()->createTable($table);
 
+        //        Compound table ( rule - store )
         $table = $installer->getConnection()
             ->newTable($installer->getTable('Tigren_rule_store'))
             ->addColumn(
+                'rule_store_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                [
+                    'identity' => true,
+                    'nullable' => false,
+                    'primary' =>
+                        true,
+                    'unsigned' => true
+                ],
+                'Rule Id'
+            )->addColumn(
                 'rule_id',
                 \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
                 null,
                 [
                     'nullable' => false,
-                    'primary' => true,
                 ],
                 'Rule Id'
             )->addColumn(
@@ -110,18 +152,26 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 null,
                 [
                     'nullable' => false,
-                    'primary' => true,
                 ],
                 'Rule store'
+            )->addIndex(
+                $installer->getIdxName(
+                    'rule_store_id',
+                    ['rule_id', 'store_id'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
+                ),
+                ['rule_id', 'store_id'],
+                ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
             )->setComment(
                 'Tigren Rule Store'
             );
         $installer->getConnection()->createTable($table);
 
+        //        Compound table ( rule - products )
         $table = $installer->getConnection()
             ->newTable($installer->getTable('Tigren_rule_products'))
             ->addColumn(
-                'rule_id',
+                'rule_product_id',
                 \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
                 null,
                 [
@@ -130,11 +180,27 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 ],
                 'Rule Id'
             )->addColumn(
+                'rule_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                [
+                    'nullable' => false,
+                ],
+                'Rule Id'
+            )->addColumn(
                 'product_id',
                 \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
                 null,
-                ['nullable' => false, 'primary' => true,],
+                ['nullable' => false,],
                 'Rule products'
+            )->addIndex(
+                $installer->getIdxName(
+                    'rule_product_id',
+                    ['rule_id', 'product_id'],
+                    \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE
+                ),
+                ['rule_id', 'product_id'],
+                ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_UNIQUE]
             )->setComment(
                 'Tigren Rule Products'
             );

@@ -10,7 +10,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="Tigren" translate="label" sortOrder="10">
-            <label>Tigren</label>
+            <label>Tigren Extensions</label>
         </tab>
         <section id="faq" translate="label" sortOrder="130" showInDefault="1"
                  showInWebsite="1" showInStore="1">
