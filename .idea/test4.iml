@@ -155,7 +155,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/magento/module-media-content-cms" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tubalmartin/cssmin" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/allure-framework/allure-codeception" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/magento/module-catalog-rule" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/magento/module-media-storage" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/magento/module-re-captcha-webapi-api" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/magento/module-msrp-sample-data" />

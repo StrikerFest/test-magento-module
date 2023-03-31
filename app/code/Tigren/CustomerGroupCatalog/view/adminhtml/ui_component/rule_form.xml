@@ -40,7 +40,7 @@
             </item>
         </argument>
         <settings>
-            <submitUrl path="customerGroupCatalog/rule/save"></submitUrl>
+            <submitUrl path="customerGroupCatalog/rule/save"/>
         </settings>
     </dataSource>
     <!--    Fieldset-->
@@ -82,9 +82,6 @@
                 <disabled>false</disabled>
             </settings>
         </field>
-<!--        <htmlContent name="html_content">-->
-<!--            <block class="Tigren\CustomerGroupCatalog\Block\Adminhtml\Rule\Rule" name="rule_field" template="Tigren_CustomerGroupCatalog::rule_field.phtml" group="detailed_info"/>-->
-<!--        </htmlContent>-->
         <field name="rule_customer_group">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -92,7 +89,6 @@
                     <item name="additionalClasses" xsi:type="string">amgroupcat-fieldset-child</item>
 
                     <item name="labelVisible" xsi:type="boolean">true</item>
-<!--                    <item name="additionalClasses" xsi:type="string">amgroupcat-field-multiselect</item>-->
                     <item name="dataType" xsi:type="string">number</item>
                     <item name="formElement" xsi:type="string">multiselect</item>
                     <item name="source" xsi:type="string">customergroup</item>
@@ -106,7 +102,6 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Stores</item>
-<!--                    <item name="additionalClasses" xsi:type="string">amgroupcat-field-multiselect</item>-->
                     <item name="dataType" xsi:type="string">number</item>
                     <item name="formElement" xsi:type="string">multiselect</item>
                     <item name="source" xsi:type="string">store</item>
@@ -118,58 +113,6 @@
                 <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\StoresOptionsProvider</item>
             </argument>
         </field>
-<!--        <field name="rule_store">-->
-<!--            <argument name="data" xsi:type="array">-->
-<!--                <item name="config" xsi:type="array">-->
-<!--                    <item name="dataType" xsi:type="string">text</item>-->
-<!--                    <item name="label" xsi:type="string" translate="true">Rule store</item>-->
-<!--                    <item name="formElement" xsi:type="string">textarea</item>-->
-<!--                    <item name="source" xsi:type="string">rule</item>-->
-<!--                    <item name="dataScope" xsi:type="string">store</item>-->
-<!--                </item>-->
-<!--            </argument>-->
-<!--        </field>-->
-
-        <field name="rule_product">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string" translate="true">Product - Chưa làm được - Cập nhật bằng insert</item>
-                    <!--                    <item name="additionalClasses" xsi:type="string">amgroupcat-field-multiselect</item>-->
-                    <item name="dataType" xsi:type="string">number</item>
-                    <item name="formElement" xsi:type="string">multiselect</item>
-                    <item name="source" xsi:type="string">products</item>
-                    <item name="dataScope" xsi:type="string">store</item>
-                    <item name="validation" xsi:type="array">
-                        <item name="required-entry" xsi:type="boolean">true</item>
-                    </item>
-                </item>
-<!--                <item name="options" xsi:type="object">Magento\Eav\Model\ResourceModel/Entity/Attribute/Collection</item>-->
-            </argument>
-        </field>
-
-<!--        <htmlContent name="html_content">-->
-<!--            <argument name="block" xsi:type="object">Tigren\CustomerGroupCatalog\Block\Adminhtml\Rule\Edit\Tab\ProductConditions</argument>-->
-<!--            <argument name="data" xsi:type="array">-->
-<!--                <item name="config" xsi:type="array">-->
-<!--                    <item name="additionalClasses" xsi:type="string">amgroupcat-html-content</item>-->
-<!--                </item>-->
-<!--            </argument>-->
-<!--        </htmlContent>-->
-
-<!--        <field name="rule_products">-->
-<!--            <argument name="data" xsi:type="array">-->
-<!--                <item name="config" xsi:type="array">-->
-<!--                    <item name="dataType" xsi:type="string">text</item>-->
-<!--                    <item name="label" xsi:type="string" translate="true">Rule Products</item>-->
-<!--                    <item name="formElement" xsi:type="string">input</item>-->
-<!--                    <item name="source" xsi:type="string">rule</item>-->
-<!--                    <item name="dataScope" xsi:type="string">products</item>-->
-<!--                </item>-->
-<!--            </argument>-->
-<!--            <settings>-->
-<!--&lt;!&ndash;                <visible>false</visible>&ndash;&gt;-->
-<!--            </settings>-->
-<!--        </field>-->
         <field name="rule_discount_amount">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -226,21 +169,21 @@
             </argument>
         </field>
     </fieldset>
-<!--    <htmlContent name="block_product_edit_tab_conditions" sortOrder="20">-->
-<!--        <argument name="data" xsi:type="array">-->
-<!--            <item name="wrapper" xsi:type="array">-->
-<!--                <item name="label" xsi:type="string" translate="true">Conditions</item>-->
-<!--                <item name="collapsible" xsi:type="boolean">true</item>-->
-<!--                <item name="opened" xsi:type="boolean">false</item>-->
-<!--            </item>-->
-<!--        </argument>-->
-<!--        <settings>-->
-<!--            <wrapper>-->
-<!--                <canShow>true</canShow>-->
-<!--                <componentType>fieldset</componentType>-->
-<!--            </wrapper>-->
-<!--        </settings>-->
-<!--&lt;!&ndash;        <block class="Magento\CatalogRule\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions" name="promo_catalog_edit_tab"/>&ndash;&gt;-->
-<!--    </htmlContent>-->
-
+    <htmlContent name="block_product_edit_tab_conditions" sortOrder="20">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="string">114</item>
+            </item>
+        </argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+        <block class="Tigren\CustomerGroupCatalog\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions" name="rule_condition" />
+    </htmlContent>
 </form>
