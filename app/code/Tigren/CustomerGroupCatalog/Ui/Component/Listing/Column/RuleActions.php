@@ -16,7 +16,7 @@ use Magento\Ui\Component\Listing\Columns\Column;
 class RuleActions extends Column
 {
     private const URL_PATH_EDIT = 'customerGroupCatalog/rule/edit';
-    private const URL_PATH_DELETE = 'customergroupcatalog/rule/delete';
+    private const URL_PATH_DELETE = 'customerGroupCatalog/rule/delete';
 
 
     public function __construct(
@@ -42,16 +42,16 @@ class RuleActions extends Column
                         'label' => __('Edit')
                     ];
 //                    Delete
-//                    $question = $this->escaper->escapeHtml($item['question']);
-//                    $item[$name]['delete'] = [
-//                        'href' => $this->getDeleteUrl($item),
-//                        'label' => __('Delete'),
-//                        'confirm' => [
-//                            'title' => __('Delete the following question?<br>%1', $question),
-//                            'message' => __('Are you sure you want to delete the following question?<br>%1?', $question)
-//                        ],
-//                        'post' => true
-//                    ];
+                    $rule = $this->escaper->escapeHtml($item['name']);
+                    $item[$name]['delete'] = [
+                        'href' => $this->getDeleteUrl($item),
+                        'label' => __('Delete'),
+                        'confirm' => [
+                            'title' => __('Delete the following rule?<br>%1', $rule),
+                            'message' => __('Are you sure you want to delete the following rule?<br>%1?', $rule)
+                        ],
+                        'post' => true
+                    ];
                 }
             }
         }

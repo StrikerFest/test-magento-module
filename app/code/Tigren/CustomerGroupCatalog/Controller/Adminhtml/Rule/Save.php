@@ -67,7 +67,6 @@ class Save extends Action implements HttpPostActionInterface
 
             $productCollection = $this->_productCollection->create();
 
-            // Nếu id chưa được đặt - Id = null
             if (empty($data['rule_id'])) {
                 $data['rule_id'] = null;
             }
@@ -102,7 +101,7 @@ class Save extends Action implements HttpPostActionInterface
             unset($dataRuleCustomerGroup['store']);
             unset($dataRuleCustomerGroup['customer_group_ids-prepared-for-send']);
             unset($dataRuleCustomerGroup['rule']);
-//dd($data);
+
             array_shift($data['rule']['conditions']);
             $dataCondition = $data['rule']['conditions'];
             $data += ['conditions' => $dataCondition];
@@ -114,33 +113,25 @@ class Save extends Action implements HttpPostActionInterface
                 $this->resource->save($model);
                 $ruleId = $model->getId();
 
-                //                $model = $this->ruleFactory->create();
-                //                $this->resource->load($model, $ruleId);
-                //                $this->resource->delete($model);
-
                 // Load store collection -get all
                 // Filter with if == ruleId
                 // Delete
-
                 $collectionStore = $modelRuleStore->getCollection();
                 $collectionCustomerGroup = $modelRuleCustomerGroup->getCollection();
                 $collectionProduct = $modelRuleProduct->getCollection();
                 foreach ($collectionStore as $CS) {
                     if ($CS['rule_id'] == $ruleId) {
-                        //                        echo "<BR><BR>Delete: STORE";
                         $this->ruleStoreResourceDelete->load($modelRuleStoreDelete, $CS['rule_store_id']);
                         $this->ruleStoreResourceDelete->delete($modelRuleStoreDelete);
                     }
                 }
                 foreach ($collectionCustomerGroup as $CCG) {
                     if ($CCG['rule_id'] == $ruleId) {
-                        //                        echo "<BR><BR>Delete: CUSTOMERGROUP";
                         $this->ruleCustomerGroupResourceDelete->load($modelRuleCustomerGroupDelete,
                             $CCG['rule_customerGroup_id']);
                         $this->ruleCustomerGroupResourceDelete->delete($modelRuleCustomerGroupDelete);
                     }
                 }
-                //                dd(123);
                 foreach ($dataRuleCustomerGroup['customer_group_ids'] as $RCG) {
                     $saveData = ['rule_customerGroup_id' => null];
                     $saveData += ['rule_id' => $ruleId];
@@ -162,14 +153,12 @@ class Save extends Action implements HttpPostActionInterface
             }
             foreach ($collectionProduct as $CS) {
                 if ($CS['rule_id'] == $ruleId) {
-//                                            echo "<BR><BR>Delete: PD" . $CS['rule_product_id'];
                     $this->ruleProductResourceDelete->load($modelRuleProductDelete,
                         $CS['rule_product_id']);
                     $this->ruleProductResourceDelete->delete($modelRuleProductDelete);
                 }
             }
-//            dd(123);
-            // Campare all productx
+            // Compare all product
             foreach ($productCollection->getData() as $product) {
                 // Condition data - Give attribute type, operator, string value with comma
                 foreach ($data['conditions'] as $conditionItem) {
