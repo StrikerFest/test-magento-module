@@ -102,7 +102,7 @@ class Save extends Action implements HttpPostActionInterface
             unset($dataRuleCustomerGroup['store']);
             unset($dataRuleCustomerGroup['customer_group_ids-prepared-for-send']);
             unset($dataRuleCustomerGroup['rule']);
-dd($data);
+//dd($data);
             array_shift($data['rule']['conditions']);
             $dataCondition = $data['rule']['conditions'];
             $data += ['conditions' => $dataCondition];
@@ -189,8 +189,8 @@ dd($data);
                             break;
                         case 'attribute_set_id':
                             if ($product['attribute_set_id'] == $conditionItem['value']) {
-                                echo '<br><br>+++' . $product['attribute_set_id'];
-                                echo '<br---' . $conditionItem['value'];
+//                                echo '<br><br>+++' . $product['attribute_set_id'];
+//                                echo '<br---' . $conditionItem['value'];
                                 $saveData = ['rule_product_id' => null];
                                 $saveData += ['rule_id' => $ruleId];
                                 $saveData += ['product_id' => $product['entity_id']];
@@ -201,7 +201,6 @@ dd($data);
                     }
                 }
             }
-die();
 
             $this->messageManager->addSuccessMessage(__("rule saved"));
             return $resultRedirect->setPath('*/*/');
