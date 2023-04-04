@@ -11,6 +11,8 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Ui\DataProvider\Modifier\PoolInterface;
 use Magento\Ui\DataProvider\ModifierPoolDataProvider;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule\CollectionFactory;
+use Tigren\CustomerGroupCatalog\Model\ResourceModel\RuleStore\CollectionFactory as StoreFactory;
+use Tigren\CustomerGroupCatalog\Model\ResourceModel\RuleCustomerGroup\CollectionFactory as CustomerGroupFactory;
 use Tigren\CustomerGroupCatalog\Model\ResourceModel\Rule as RuleResource;
 use Tigren\CustomerGroupCatalog\Model\RuleFactory;
 use Tigren\CustomerGroupCatalog\Model\Rule;
@@ -26,23 +28,64 @@ class DataProvider extends ModifierPoolDataProvider
         CollectionFactory $collectionFactory,
         private RuleResource $resource,
         private RuleFactory $ruleFactory,
+        private StoreFactory $storeFactory,
+        private CustomerGroupFactory $customerGroupFactory,
         private RequestInterface $request,
         array $meta = [],
         array $data = []
-    )
-    {
+    ) {
         $this->collection = $collectionFactory->create();
+        $this->storeCollection = $storeFactory->create();
+        $this->customerGroupCollection = $customerGroupFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
     public function getData()
     {
-        if(isset($this->loadedData)){
+        if (isset($this->loadedData)) {
             return $this->loadedData;
         }
 
         $rule = $this->getCurrentRule();
         $this->loadedData[$rule->getId()] = $rule->getData();
+        //        dd($this->storeCollection->getData());
+        $storeTemp = [];
+        $customerGroupTemp = [];
+        foreach ($this->storeCollection->getData() as $item) {
+            if ($item['rule_id'] == $rule->getId()) {
+                array_push($storeTemp, $item['store_id']);
+            }
+        }
+        foreach ($this->customerGroupCollection->getData() as $item) {
+            if ($item['rule_id'] == $rule->getId()) {
+                array_push($customerGroupTemp, $item['customerGroup_id']);
+            }
+        }
+
+        $this->loadedData[$rule->getId()] += [
+            "rule" => [
+                "conditions" => [
+                    1 => [
+                        "type" => "Magento\CatalogRule\Model\Rule\Condition\Combine",
+                        "aggregator" => "all",
+                        "value" => "1",
+                        "new_child" => "",
+                    ],
+                    "1--1" => [
+                        "type" => "Magento\CatalogRule\Model\Rule\Condition\Product",
+                        "attribute" => "attribute_set_id",
+                        "operator" => "==",
+                        "value" => "16",
+                    ]
+                ]
+            ]
+        ];
+
+
+        $this->loadedData[$rule->getId()] += ['store-prepared-for-send' => $storeTemp];
+        $this->loadedData[$rule->getId()] += ['store' => $storeTemp];
+        $this->loadedData[$rule->getId()] += ['customer_group_ids-prepared-for-send' => $customerGroupTemp];
+        $this->loadedData[$rule->getId()] += ['customer_group_ids' => $customerGroupTemp];
         return $this->loadedData;
     }
 
@@ -51,7 +94,7 @@ class DataProvider extends ModifierPoolDataProvider
 
         $ruleId = $this->getRuleId();
         $rule = $this->ruleFactory->create();
-        if(!$ruleId){
+        if (!$ruleId) {
             return $rule;
         }
 
@@ -62,7 +105,7 @@ class DataProvider extends ModifierPoolDataProvider
 
     private function getRuleId(): int
     {
-//        return (int) $this->request->getParam($this->getRequestFieldName());
-        return (int) $this->request->getParam('rule_id');
+        //        return (int) $this->request->getParam($this->getRequestFieldName());
+        return (int)$this->request->getParam('rule_id');
     }
 }

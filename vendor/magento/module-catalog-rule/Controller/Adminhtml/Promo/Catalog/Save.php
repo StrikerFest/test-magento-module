@@ -74,7 +74,6 @@ class Save extends \Magento\CatalogRule\Controller\Adminhtml\Promo\Catalog imple
                     ['request' => $this->getRequest()]
                 );
                 $data = $this->getRequest()->getPostValue();
-dd($data);
                 if (!$this->getRequest()->getParam('from_date')) {
                     $data['from_date'] = $this->localeDate->formatDate();
                 }

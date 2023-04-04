@@ -36,16 +36,6 @@ class Index extends \Magento\Backend\App\Action
         $resultPage->setActiveMenu('Tigren_Rule::rule_manage');
         //Set the header title of grid
         $resultPage->getConfig()->getTitle()->prepend(__('Manage Rules'));
-
-
-        $attributeSetList = $this->ASL->listAttributeSet();
-//        dd($this->ASL);
-//        if ($attributeSetList) {
-//            foreach ($attributeSetList->getItems() as $list) {
-//               print("<pre>". print_r(($list->getData())) . "</pre>");
-//            }
-//        }
-//dd(123);
         return $resultPage;
     }
 

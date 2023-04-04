@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2023 Amasty (https://www.amasty.com)
+ * @package Customer Group Catalog for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+<!--    Change price in cart with event observer-->
+<!--    <event name="checkout_cart_product_add_after">-->
+<!--        <observer name="customPriceInCart" instance="Tigren\CustomerGroupCatalog\Observer\CustomPrice" />-->
+<!--    </event>-->
+</config>

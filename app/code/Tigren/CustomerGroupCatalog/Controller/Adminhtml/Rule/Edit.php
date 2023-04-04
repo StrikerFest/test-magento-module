@@ -17,7 +17,6 @@ class Edit extends \Magento\Backend\App\Action
 {
     public function execute(): Page
     {
-
         $pageResult = $this->createPageResult();
         $title = $pageResult->getConfig()->getTitle();
         $title->prepend(__('Rules'));

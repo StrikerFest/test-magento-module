@@ -31,6 +31,7 @@ class FinalPriceBox extends \Magento\Catalog\Pricing\Render\FinalPriceBox
     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
     $httpContext = $objectManager->get('Magento\Framework\App\Http\Context');
     $isLoggedIn = $httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+//    dd($this->getData('css_classes') );
     if($isLoggedIn){
       return '<div class="price-box ' . $this->getData('css_classes') . '" ' .
         'data-role="priceBox" ' .
