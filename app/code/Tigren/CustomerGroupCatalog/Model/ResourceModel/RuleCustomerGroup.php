@@ -10,6 +10,6 @@ namespace Tigren\CustomerGroupCatalog\Model\ResourceModel;
 class RuleCustomerGroup extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb {
     protected function _construct()
     {
-        $this->_init('Tigren_rule_customer_group', 'rule_customergroup_id');
+        $this->_init('Tigren_rule_customer_group', 'rule_customerGroup_id');
     }
 }

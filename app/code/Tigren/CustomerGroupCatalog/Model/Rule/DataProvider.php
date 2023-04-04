@@ -48,20 +48,30 @@ class DataProvider extends ModifierPoolDataProvider
 
         $rule = $this->getCurrentRule();
         $this->loadedData[$rule->getId()] = $rule->getData();
-        //        dd($this->storeCollection->getData());
         $storeTemp = [];
         $customerGroupTemp = [];
+
+        // Load store
         foreach ($this->storeCollection->getData() as $item) {
             if ($item['rule_id'] == $rule->getId()) {
                 array_push($storeTemp, $item['store_id']);
             }
         }
+
+        // Load customerGroup
         foreach ($this->customerGroupCollection->getData() as $item) {
             if ($item['rule_id'] == $rule->getId()) {
                 array_push($customerGroupTemp, $item['customerGroup_id']);
             }
         }
 
+        // Load condition
+        // Take data from rule_product_table
+        // Check if the amount of data in the table with the same att_set_id equal to the amount of data in the product collection
+        // If data in rule_product_table['att_sett_id'] < collection['...'], set attribute to sku
+        // If equal, set attribute to attribute_set_id and value to the product's att_set_id
+        // If bigger, error
+        // The bellow data is temporally
         $this->loadedData[$rule->getId()] += [
             "rule" => [
                 "conditions" => [

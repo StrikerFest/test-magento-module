@@ -46,6 +46,9 @@ class Save extends Action implements HttpPostActionInterface
         parent::__construct($context);
         $this->_productCollection = $ProductCollection;
         $this->attributeSet = $attributeSet;
+        $this->ruleStoreResourceDelete = $this->ruleStoreResource;
+        $this->ruleCustomerGroupResourceDelete = $this->ruleCustomerGroupResource;
+        $this->ruleProductResourceDelete = $this->ruleProductResource;
     }
 
     public function execute(): ResultInterface
@@ -56,8 +59,11 @@ class Save extends Action implements HttpPostActionInterface
         if ($data) {
             $model = $this->RuleFactory->create();
             $modelRuleStore = $this->RuleStoreFactory->create();
+            $modelRuleStoreDelete = $this->RuleStoreFactory->create();
             $modelRuleCustomerGroup = $this->RuleCustomerGroupFactory->create();
+            $modelRuleCustomerGroupDelete = $this->RuleCustomerGroupFactory->create();
             $modelRuleProduct = $this->RuleProductFactory->create();
+            $modelRuleProductDelete = $this->RuleProductFactory->create();
 
             $productCollection = $this->_productCollection->create();
 
@@ -96,7 +102,7 @@ class Save extends Action implements HttpPostActionInterface
             unset($dataRuleCustomerGroup['store']);
             unset($dataRuleCustomerGroup['customer_group_ids-prepared-for-send']);
             unset($dataRuleCustomerGroup['rule']);
-
+dd($data);
             array_shift($data['rule']['conditions']);
             $dataCondition = $data['rule']['conditions'];
             $data += ['conditions' => $dataCondition];
@@ -107,6 +113,34 @@ class Save extends Action implements HttpPostActionInterface
                 $model->setData($dataRule);
                 $this->resource->save($model);
                 $ruleId = $model->getId();
+
+                //                $model = $this->ruleFactory->create();
+                //                $this->resource->load($model, $ruleId);
+                //                $this->resource->delete($model);
+
+                // Load store collection -get all
+                // Filter with if == ruleId
+                // Delete
+
+                $collectionStore = $modelRuleStore->getCollection();
+                $collectionCustomerGroup = $modelRuleCustomerGroup->getCollection();
+                $collectionProduct = $modelRuleProduct->getCollection();
+                foreach ($collectionStore as $CS) {
+                    if ($CS['rule_id'] == $ruleId) {
+                        //                        echo "<BR><BR>Delete: STORE";
+                        $this->ruleStoreResourceDelete->load($modelRuleStoreDelete, $CS['rule_store_id']);
+                        $this->ruleStoreResourceDelete->delete($modelRuleStoreDelete);
+                    }
+                }
+                foreach ($collectionCustomerGroup as $CCG) {
+                    if ($CCG['rule_id'] == $ruleId) {
+                        //                        echo "<BR><BR>Delete: CUSTOMERGROUP";
+                        $this->ruleCustomerGroupResourceDelete->load($modelRuleCustomerGroupDelete,
+                            $CCG['rule_customerGroup_id']);
+                        $this->ruleCustomerGroupResourceDelete->delete($modelRuleCustomerGroupDelete);
+                    }
+                }
+                //                dd(123);
                 foreach ($dataRuleCustomerGroup['customer_group_ids'] as $RCG) {
                     $saveData = ['rule_customerGroup_id' => null];
                     $saveData += ['rule_id' => $ruleId];
@@ -121,43 +155,53 @@ class Save extends Action implements HttpPostActionInterface
                     $modelRuleStore->setData($saveData);
                     $this->ruleStoreResource->save($modelRuleStore);
                 }
-                // All product - Give entity id , sku, att set id , type id
-                foreach ($productCollection->getData() as $product) {
-                    // Condition data - Give attribute type, operator, string value with comma
-                    foreach ($data['conditions'] as $conditionItem) {
-                        switch ($conditionItem['attribute']) {
-                            case 'sku' :
-                                $sku = explode(", ", $conditionItem['value']);
-                                foreach ($sku as $skuItem) {
-                                    if ($product['sku'] == $skuItem) {
-                                        // echo '<br>---' . $product['entity_id'];
-                                        $saveData = ['rule_product_id' => null];
-                                        $saveData += ['rule_id' => $ruleId];
-                                        $saveData += ['product_id' => $product['entity_id']];
-                                        $modelRuleProduct->setData($saveData);
-                                        $this->ruleProductResource->save($modelRuleProduct);
-                                    }
-                                }
-                                break;
-                            case 'attribute_set_id':
-                                if ($product['attribute_set_id'] == $conditionItem['value']) {
-                                    // echo '<br>+++' . $product['entity_id'];
+            } catch (LocalizedException $exception) {
+                $this->messageManager->addExceptionMessage($exception);
+            } catch (\Throwable $e) {
+                $this->messageManager->addErrorMessage($e);
+            }
+            foreach ($collectionProduct as $CS) {
+                if ($CS['rule_id'] == $ruleId) {
+//                                            echo "<BR><BR>Delete: PD" . $CS['rule_product_id'];
+                    $this->ruleProductResourceDelete->load($modelRuleProductDelete,
+                        $CS['rule_product_id']);
+                    $this->ruleProductResourceDelete->delete($modelRuleProductDelete);
+                }
+            }
+//            dd(123);
+            // Campare all productx
+            foreach ($productCollection->getData() as $product) {
+                // Condition data - Give attribute type, operator, string value with comma
+                foreach ($data['conditions'] as $conditionItem) {
+                    switch ($conditionItem['attribute']) {
+                        case 'sku' :
+                            $sku = explode(", ", $conditionItem['value']);
+                            foreach ($sku as $skuItem) {
+                                if ($product['sku'] == $skuItem) {
+                                    // echo '<br>---' . $product['entity_id'];
                                     $saveData = ['rule_product_id' => null];
                                     $saveData += ['rule_id' => $ruleId];
                                     $saveData += ['product_id' => $product['entity_id']];
                                     $modelRuleProduct->setData($saveData);
                                     $this->ruleProductResource->save($modelRuleProduct);
                                 }
-                                break;
-                        }
+                            }
+                            break;
+                        case 'attribute_set_id':
+                            if ($product['attribute_set_id'] == $conditionItem['value']) {
+                                echo '<br><br>+++' . $product['attribute_set_id'];
+                                echo '<br---' . $conditionItem['value'];
+                                $saveData = ['rule_product_id' => null];
+                                $saveData += ['rule_id' => $ruleId];
+                                $saveData += ['product_id' => $product['entity_id']];
+                                $modelRuleProduct->setData($saveData);
+                                $this->ruleProductResource->save($modelRuleProduct);
+                            }
+                            break;
                     }
                 }
-            } catch (LocalizedException $exception) {
-                $this->messageManager->addExceptionMessage($exception);
-            } catch (\Throwable $e) {
-                $this->messageManager->addErrorMessage(__("IT DIED saving rule"));
             }
-
+die();
 
             $this->messageManager->addSuccessMessage(__("rule saved"));
             return $resultRedirect->setPath('*/*/');

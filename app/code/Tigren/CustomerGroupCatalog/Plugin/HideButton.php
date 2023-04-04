@@ -95,17 +95,12 @@ class HideButton
                     'in' => $ruleId
                 )
             )->getSelect()->where('active = 1')->order("priority DESC");
-            //            $collection->getSelect()->where('active = 1')->order("priority DESC");
             $data = $collection->getFirstItem()->getData('discountAmount');
-            //            dd($data);
             $discountAmount = (int)$data ?? 0;
             $discountAmount = 1 - $discountAmount / 100;
-            //            dd($discountAmount);
-                        return $product->getData('price') * $discountAmount;
-//            return $product->getData('price');
+            return $product->getData('price') * $discountAmount;
         }
 
-        //        return $product->getPriceModel()->getPrice($product);
     }
 
 }
