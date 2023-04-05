@@ -10,9 +10,7 @@
     <update handle="styles" />
     <body>
         <referenceContainer name="content">
-
-            <uiComponent name="tigren_customerGroupCatalog_history_index" />
-
+            <block class="Tigren\CustomerGroupCatalog\Block\History" name="customerGroupCatalog_index_index" template="Tigren_CustomerGroupCatalog::history.phtml" />
         </referenceContainer>
     </body>
 </page>

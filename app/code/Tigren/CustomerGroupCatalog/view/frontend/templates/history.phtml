@@ -1,0 +1,34 @@
+<?php
+
+$histories = $block->getHistory();
+?>
+
+<?php if ($histories !== false) : ?>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Order id</th>
+        <th>Order price</th>
+        <th>Order original price</th>
+        <th>Rule id</th>
+        <th>Rule discount</th>
+        <th>Rule name</th>
+        <th>Created at</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($histories as $history) : ?>
+        <tr>
+
+            <td><?= $history['order_id'] ?></td>
+            <td><?= $history['order_price'] . " " . $history['order_currency'] ?></td>
+            <td><?= $history['order_price'] / (1 - $history['rule_discount'] / 100) . " " . $history['order_currency'] ?></td>
+            <td><?= $history['rule_id'] ?></td>
+            <td><?= $history['rule_name'] ?></td>
+            <td><?= $history['rule_discount'] ?>%</td>
+            <td><?= $history['created_at'] ?></td>
+        </tr>
+    <?php endforeach; ?>
+    <?php endif; ?>
+    </tbody>
+</table>

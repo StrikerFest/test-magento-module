@@ -74,7 +74,6 @@ class OrderPlaceAfter implements ObserverInterface
                                     }
                                 }
                             }
-
                         }
                     }
                 }

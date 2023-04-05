@@ -9,20 +9,20 @@ namespace Tigren\CustomerGroupCatalog\Controller\History;
 
 use Magento\Backend\App\Action\Context;
 
-class Index extends \Magento\Backend\App\Action
+class Index extends \Magento\Framework\App\Action\Action
 {
     protected $resultPageFactory = false;
     protected $_historyFactory = false;
 
     public function __construct(Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Tigren\CustomerGroupCatalog\Model\HistoryFactory $historyFactory,
-        \Tigren\CustomerGroupCatalog\Model\AttributeSetList $ASL,
+//        \Tigren\CustomerGroupCatalog\Model\HistoryFactory $historyFactory,
+//        \Tigren\CustomerGroupCatalog\Model\AttributeSetList $ASL,
     )
     {
         $this->resultPageFactory = $resultPageFactory;
-        $this->historyFactory = $historyFactory;
-        $this->ASL = $ASL;
+//        $this->historyFactory = $historyFactory;
+//        $this->ASL = $ASL;
         parent::__construct($context);
     }
 
@@ -34,7 +34,7 @@ class Index extends \Magento\Backend\App\Action
         //Set the menu which will be active for this page
 //        $resultPage->setActiveMenu('Tigren_Rule::rule_manage');
         //Set the header title of grid
-        $resultPage->getConfig()->getTitle()->prepend(__('Manage order customer group catalog history'));
+        $resultPage->getConfig()->getTitle()->prepend(__('View order customer group catalog history'));
         return $resultPage;
     }
 
