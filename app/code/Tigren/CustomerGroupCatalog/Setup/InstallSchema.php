@@ -208,6 +208,43 @@ class InstallSchema implements \Magento\Framework\Setup\InstallSchemaInterface
                 'Tigren Rule Products'
             );
         $installer->getConnection()->createTable($table);
+
+        $table = $installer->getConnection()
+            ->newTable($installer->getTable('Tigren_customer_group_catalog_history'))
+            ->addColumn(
+                'entity_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                [
+                    'identity' => true,
+                    'nullable' => false,
+                    'primary' =>
+                        true,
+                    'unsigned' => true
+                ],
+                'Entity id'
+            )->addColumn(
+                'order_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['nullable' => false,],
+                'Order products'
+            )->addColumn(
+                'customer_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['nullable' => false,],
+                'Customer id'
+            )->addColumn(
+                'rule_id',
+                \Magento\Framework\Db\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['nullable' => false,],
+                'Rule id'
+            )->setComment(
+                'Tigren customer group catalog history Table'
+            );
+        $installer->getConnection()->createTable($table);
         $installer->endSetup();
     }
 }
