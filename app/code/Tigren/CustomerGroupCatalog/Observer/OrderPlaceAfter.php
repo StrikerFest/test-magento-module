@@ -30,9 +30,11 @@ class OrderPlaceAfter implements ObserverInterface
         $this->_ruleProductFactory = $ruleProductFactory;
         $this->_ruleCustomerGroupFactory = $ruleCustomerGroupFactory;
         $this->_ruleStoreFactory = $ruleStoreFactory;
-        $this->_customerSession = $customerSession;
-        $this->_storeManager = $storeManager;
         $this->_ruleFactory = $ruleFactory;
+
+        $this->_customerSession = $customerSession;
+
+        $this->_storeManager = $storeManager;
         $this->_historyFactory = $historyFactory;
         $this->_historyResource = $historyResource;
     }
@@ -55,12 +57,14 @@ class OrderPlaceAfter implements ObserverInterface
             $dataProduct = $collectionProduct->getData();
             $dataCustomerGroup = $collectionCustomerGroup->getData();
             $dataStore = $collectionStore->getData();
+
             $customer = $this->_customerSession->create();
+            $currentCustomerGroup = $customer->getCustomer()->getGroupId();
+            $currentCustomerId = $customer->getCustomer()->getId();
+
             $order = $observer->getEvent()->getOrder();
             $orderId = $order->getIncrementId();
 
-            $currentCustomerGroup = $customer->getCustomer()->getGroupId();
-            $currentCustomerId = $customer->getCustomer()->getId();
             $currentStore = $this->_storeManager->getStore()->getId();
             $ruleId = array();
             foreach ($dataStore as $DS) {
@@ -83,6 +87,7 @@ class OrderPlaceAfter implements ObserverInterface
                     'in' => $ruleId
                 )
             )->getSelect()->where('active = 1')->order("priority DESC");
+
             $history = [];
             $history += ['rule_id' => $collection->getFirstItem()->getData('rule_id')];
             $history += ['customer_id' => $currentCustomerId];
