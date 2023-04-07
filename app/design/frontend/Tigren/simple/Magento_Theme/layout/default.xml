@@ -1,0 +1,17 @@
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/m2-logo.png</argument>
+                <argument name="logo_height" xsi:type="number">150</argument>
+                <argument name="logo_width" xsi:type="number">150</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

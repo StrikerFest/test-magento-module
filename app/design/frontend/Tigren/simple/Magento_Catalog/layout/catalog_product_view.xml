@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="view.addto.wishlist" remove="true" />
+        <referenceContainer name="product.info.extrahint">
+            <block name="secure.logos" template="Magento_Catalog::extra_detail.phtml" before="-">
+                <arguments>
+                    <argument name="title" xsi:type="string">I bet you are going t o enj oy th is i tem pls che ck ou t thi s ca t pi c</argument>
+                    <argument name="path_image" xsi:type="string">Magento_Catalog::images/cat.jpeg</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
