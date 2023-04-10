@@ -1,0 +1,9 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+
+?>
+
+<small class="copyright">
+    <h2><?= $escaper->escapeHtml(__('message.phtml: This footer message is pretty cool, huh?')) ?></h2>
+    <?= $block->getChildHtml('sample_child') ?>
+</small>

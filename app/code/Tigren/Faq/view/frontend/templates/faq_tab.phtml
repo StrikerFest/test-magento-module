@@ -1,0 +1,101 @@
+<?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
+
+use Tigren\Faq\Helper\Data;
+
+?>
+<?php
+$blockObj = $block->getLayout()->createBlock('Tigren\Faq\Block\Display');
+$blockFaq = $block->getLayout()->createBlock('Tigren\Faq\Block\Faq');
+$_product = $block->getProduct();
+//dd($blockFaq->enableModule());
+$enable = $blockFaq->enableModule();
+?>
+<?php if ($_faq = $blockFaq->getFaqData()) : ?>
+    <?php if ($enable == true) : ?>
+        <div class="additional-attributes-wrapper table-wrapper">
+            <table class="data table additional-attributes" id="product-attribute-specs-table">
+                <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
+                <tbody>
+                <?php $check = 0 ?>
+
+                <?php foreach ($_faq as $_data) : ?>
+                    <?php if ($block->getProduct()['entity_id'] == $_data['product']) : ?>
+                        <?php $check = 1; ?>
+                        <tr>
+                            <th>Question</th>
+                            <td><?= $_data['question'] ?></td>
+                            <th>Author</th>
+                            <td><?= $_data['author'] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Answer</th>
+                            <td><?= $_data['answer'] ?></td>
+                            <th>Status</th>
+                            <td><?= $_data['status'] ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <hr>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <?php if ($check == 0): ?>
+                    <h1>No question has been asked yet. Ask one now !!</h1>
+                <?php endif; ?>
+                </tbody>
+            </table>
+
+            <form class="form" action="faq/faq/faqsave" method="post" id="faqForm">
+
+                <fieldset class="fieldset">
+                    <legend class="legend"><span><?php echo __('Test Form') ?></span></legend>
+                    <br>
+                    <div class="field required">
+                        <label for="author" class="label">
+                            <span><?php echo __('Author') ?></span>
+                        </label>
+                        <input type="hidden" id="status"
+                               name="status"
+                               class="input-text"
+                               value="Pending" />
+                        <input type="hidden" id="product"
+                               name="product"
+                               class="input-text"
+                               value="<?= $block->getProduct()['entity_id'] ?>" />
+                        <div class=" control">
+                            <input type="text" id="author"
+                                   name="author"
+                                   class="input-text">
+                        </div>
+                        <label for="question" class="label">
+                            <span><?php echo __('Question') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="question"
+                                   name="question"
+                                   class="input-text">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */
+                        echo __('Submit') ?>">
+                <span><?php /* @escapeNotVerified */
+                    echo __('Submit') ?></span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

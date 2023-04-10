@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author Trinhtheanh789
+  ~ Copyright (c) 2023.  Trinhtheanh789. All rights reserved.
+  -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuratio n.xsd">
+    <referenceContainer name="content">
+        <block class="Tigren\HelloWorld\Block\Test" name="helloworld_test" template="Tigren_HelloWorld::sayhello.phtml" />
+    </referenceContainer>
+</page>

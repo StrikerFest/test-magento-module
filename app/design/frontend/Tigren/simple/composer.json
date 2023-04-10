@@ -1,0 +1,25 @@
+{
+    "name": "tigren/simple",
+    "description": "Simple Tigren theme",
+    "require": {
+        "php": "~8.1.0",
+        "magento/theme-frontend-blank": "100.0.*",
+        "magento/framework": "100.0.*"
+    },
+    "type": "magento2-theme",
+    "version": "100.0.1",
+    "authors": [
+        {
+            "name": "Tigren Solutions",
+            "email": "info@tigren.com"
+        }
+    ],
+    "license": [
+        "OSL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <!--form argument-->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">rule_form_edit.rule_form_edit_data_source</item>
+            <item name="deps" xsi:type="string">rule_form_edit.rule_form_edit_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Rule Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">rule_form_edit</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <!--    Form setting -->
+    <settings>
+        <buttons>
+            <button name="save" class="Tigren\CustomerGroupCatalog\Block\Adminhtml\CustomerGroupCatalog\Edit\SaveButton" />
+            <!--            <button name="back" class="Tigren\CustomerGroupCatalog\Block\Adminhtml\CustomerGroupCatalog\Edit\BackButton" />-->
+        </buttons>
+    </settings>
+    <!--    DataSource-->
+    <dataSource name="rule_form_edit_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Tigren\CustomerGroupCatalog\Model\Rule\DataProvider</argument>
+            <argument name="name" xsi:type="string">rule_form_edit_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">rule_id</argument>
+            <argument name="requestFieldName" xsi:type="string">rule_id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="customerGroupCatalog/rule/save"/>
+        </settings>
+    </dataSource>
+    <!--    Fieldset-->
+    <fieldset name="rule_details">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Rule Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="rule_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Rule Id</item>
+                    <item name="source" xsi:type="string">rule</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>rule_id</dataScope>
+            </settings>
+        </field>
+        <field name="rule_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule Name</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">type</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <disabled>false</disabled>
+            </settings>
+        </field>
+        <field name="rule_customer_group">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="additionalClasses" xsi:type="string">amgroupcat-fieldset-child</item>
+
+                    <item name="labelVisible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">customergroup</item>
+                    <item name="dataScope" xsi:type="string">customer_group_ids</item>
+                </item>
+                <item name="options" xsi:type="object">Magento\CatalogRule\Model\Rule\CustomerGroupsOptionsProvider</item>
+
+            </argument>
+        </field>
+        <field name="rule_store">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Stores</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">store</item>
+                    <item name="dataScope" xsi:type="string">store</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\Groupcat\Model\Rule\StoresOptionsProvider</item>
+            </argument>
+        </field>
+        <field name="rule_discount_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule discount amount</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">discountAmount</item>
+                </item>
+            </argument>
+        </field>
+        <field name="rule_start_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule start time</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">startTime</item>
+                </item>
+            </argument>
+        </field>
+        <field name="rule_end_time">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule end time</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">endTime</item>
+                </item>
+            </argument>
+        </field>
+        <field name="rule_priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule priority</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">priority</item>
+                </item>
+            </argument>
+        </field>
+        <field name="rule_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Rule active</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">rule</item>
+                    <item name="dataScope" xsi:type="string">active</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <htmlContent name="block_promo_catalog_edit_tab_conditions" sortOrder="20">
+        <argument name="data" xsi:type="array">
+            <item name="wrapper" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Conditions</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="string">114</item>
+            </item>
+        </argument>
+
+<!--        <block class="Tigren\CustomerGroupCatalog\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions" name="promo_catalog_edit_tab" />-->
+        <argument name="block" xsi:type="object">Tigren\CustomerGroupCatalog\Block\Adminhtml\Promo\Catalog\Edit\Tab\Conditions</argument>
+        <settings>
+            <wrapper>
+                <canShow>true</canShow>
+                <componentType>fieldset</componentType>
+            </wrapper>
+        </settings>
+    </htmlContent>
+
+</form>

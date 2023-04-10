@@ -17,6 +17,8 @@
     $_product = $block->getProduct();
 ?>
 <?php if ($_additional = $block->getAdditionalData()) :?>
+    <?php echo "---"; ?>
+    <!-- Inner content of tab -->
     <div class="additional-attributes-wrapper table-wrapper">
         <table class="data table additional-attributes" id="product-attribute-specs-table">
             <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
@@ -30,4 +32,6 @@
             </tbody>
         </table>
     </div>
+    <?php echo "---"; ?>
+
 <?php endif;?>

@@ -32,6 +32,7 @@ class Detailed extends \Magento\Framework\View\Element\Template
         \Magento\Review\Model\RatingFactory $ratingFactory,
         array $data = []
     ) {
+
         $this->_ratingFactory = $ratingFactory;
         parent::__construct($context, $data);
     }

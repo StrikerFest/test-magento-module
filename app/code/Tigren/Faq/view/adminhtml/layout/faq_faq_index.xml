@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles" />
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="tigren_faq_grid" />
+<!--            <uiComponent name="faq_form" />-->
+        </referenceContainer>
+    </body>
+</page>
+
+<!--<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">-->
+<!--    <update handle="styles"/>-->
+<!--    <body>-->
+<!--        <referenceContainer name="content">-->
+<!--            &lt;!&ndash;<uiComponent name="Tigren_blog_grid"/>&ndash;&gt;-->
+<!--            <block class="Tigren\Faq\Block\Adminhtml\Faq\Grid"-->
+<!--                   name="Tigren_faq_grid">-->
+<!--                <block class="Magento\Backend\Block\Widget\Grid"-->
+<!--                       name="Tigren_faq_grid.grid" as="grid">-->
+<!--                    <arguments>-->
+<!--                        <argument name="id" xsi:type="string">faq_id</argument>-->
+<!--                        <argument name="dataSource" xsi:type="object">Tigren\Faq\Model\ResourceModel\Faq\Collection</argument>-->
+<!--                        <argument name="default_sort" xsi:type="string">id</argument>-->
+<!--                        <argument name="default_dir" xsi:type="string">ASC</argument>-->
+<!--                        <argument name="save_parameters_in_session" xsi:type="string">1</argument>-->
+<!--                    </arguments>-->
+<!--                    <block class="Magento\Backend\Block\Widget\Grid\ColumnSet"-->
+<!--                           name="Tigren_faq_grid.grid.columnSet" as="grid.columnSet">-->
+<!--                        <arguments>-->
+<!--                            <argument name="rowUrl" xsi:type="array"> <item-->
+<!--                                name="path" xsi:type="string">*/*/edit</item> </argument>-->
+<!--                        </arguments>-->
+<!--                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="id">-->
+<!--                            <arguments>-->
+<!--                                <argument name="header" xsi:type="string"-->
+<!--                                          translate="true">ID</argument>-->
+<!--                                <argument name="index"-->
+<!--                                          xsi:type="string">faq_id</argument>-->
+<!--                                <argument name="type"-->
+<!--                                          xsi:type="string">text</argument>-->
+<!--                                <argument name="column_css_class"-->
+<!--                                          xsi:type="string">col-id</argument>-->
+<!--                                <argument name="header_css_class"-->
+<!--                                          xsi:type="string">col-id</argument>-->
+<!--                            </arguments>-->
+<!--                        </block>-->
+<!--                        <block class="Magento\Backend\Block\Widget\Grid\Column" as="question">-->
+<!--                            <arguments>-->
+<!--                                <argument name="header" xsi:type="string"-->
+<!--                                          translate="true">Question</argument>-->
+<!--                                <argument name="index"-->
+<!--                                          xsi:type="string">question</argument>-->
+<!--                                <argument name="type"-->
+<!--                                          xsi:type="string">text</argument>-->
+<!--                                <argument name="column_css_class"-->
+<!--                                          xsi:type="string">col-id</argument>-->
+<!--                                <argument name="header_css_class"-->
+<!--                                          xsi:type="string">col-id</argument>-->
+<!--                            </arguments>-->
+<!--                        </block>-->
+<!--                    </block>-->
+<!--                </block>-->
+<!--            </block>-->
+<!--        </referenceContainer>-->
+<!--    </body>-->
+<!--</page>-->

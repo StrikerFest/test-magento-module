@@ -1,0 +1,13 @@
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>Tigren Simple</title> <!-- your theme's name -->
+    <parent>Magento/luma</parent> <!-- the parent theme -->
+    <media>
+        <preview_image>media/m2-theme-image.jpg</preview_image><!-- the path to your theme's preview image -->
+    </media>
+</theme>

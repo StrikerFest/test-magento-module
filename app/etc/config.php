@@ -352,6 +352,9 @@ return [
         'Amasty_Reindex' => 1,
         'PayPal_Braintree' => 1,
         'PayPal_BraintreeGraphQl' => 1,
-        'Temando_ShippingRemover' => 1
+        'Temando_ShippingRemover' => 1,
+        'Tigren_CustomerGroupCatalog' => 1,
+        'Tigren_Faq' => 1,
+        'Tigren_HelloWorld' => 0
     ]
 ];

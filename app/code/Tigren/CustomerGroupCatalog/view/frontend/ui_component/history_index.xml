@@ -1,0 +1,119 @@
+<!--
+  ~ @author    Tigren Solutions <info@tigren.com>
+  ~ @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+  ~ @license   Open Software License ("OSL") v. 3.0
+  -->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <!--Declare data source, columns list, button...-->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider"
+                  xsi:type="string">tigren_customerGroupCatalog_history_index.tigren_customerGroupCatalog_history_index_data_source
+            </item>
+            <item name="deps" xsi:type="string">tigren_customerGroupCatalog_history_index.tigren_customerGroupCatalog_history_index_data_source</item>
+            <!--Declare the data source name which will be defined below-->
+        </item>
+        <item name="spinner" xsi:type="string">spinner_columns</item>
+        <!--Declare the listing of columns which will be defined below-->
+    </argument>
+    <dataSource name="tigren_customerGroupCatalog_history_index_data_source">
+        <!--The data source-->
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">tigren_customerGroupCatalog_history_index_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render" />
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <columns name="spinner_columns">
+        <!--The list of columns-->
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        <column name="rule_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Rule id
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="rule_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Rule name
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="rule_discount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Discount by percent
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Order id
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_price">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Order price
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="order_discount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Total discount
+                    </item>
+                </item>
+            </argument>
+        </column>
+        <column name="created_at">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label"
+                          xsi:type="string" translate="true">Created at
+                    </item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

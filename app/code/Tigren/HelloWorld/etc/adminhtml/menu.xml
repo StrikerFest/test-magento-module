@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+  ~ @author Trinhtheanh789
+  ~ Copyright (c) 2023.  Trinhtheanh789. All rights reserved.
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Tigren_HelloWorld::hello" title="Hello World"
+             module="Tigren_HelloWorld" sortOrder="50" resource="Tigren_HelloWorld::hello" />
+        <add id="Tigren_HelloWorld::hello_manage_items" title="Manage Items" module="Tigren_HelloWorld" sortOrder="50" parent="Tigren_HelloWorld::hello" action="adminhtml/hello" resource="Tigren_HelloWorld::hello_manage_items" />
+        <add id="Tigren_HelloWorld::hello_configuration" title="Configuration" module="Tigren_HelloWorld" sortOrder="50" parent="Tigren_HelloWorld::hello" action="adminhtml/system_config/edit/section/hello"
+             resource="Tigren_HelloWorld::hello_configuration" />
+    </menu>
+</config>
