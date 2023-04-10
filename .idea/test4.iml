@@ -15,6 +15,31 @@
       <sourceFolder url="file://$MODULE_DIR$/setup/src/Magento/Setup" isTestSource="false" packagePrefix="Magento\Setup\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/app/code/Amasty/Base/" isTestSource="false" packagePrefix="Amasty\Base\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/code/Amasty/GroupAssign/" isTestSource="false" packagePrefix="Amasty\GroupAssign\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/code/Amasty/Groupcat/" isTestSource="false" packagePrefix="Amasty\Groupcat\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/code/Amasty/Reindex/" isTestSource="false" packagePrefix="Amasty\Reindex\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/code/Tigren/CustomerGroupCatalog/" isTestSource="false" packagePrefix="Tigren\CustomerGroupCatalog\" />
+      <sourceFolder url="file://$MODULE_DIR$/app/code/Tigren/HelloWorld/" isTestSource="false" packagePrefix="Tigren\HelloWorld\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/dev/build/publication/sanity/Magento/Tools/Sanity" isTestSource="true" packagePrefix="Magento\Tools\Sanity\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/dev/tests/static/framework/Magento/Sniffs" isTestSource="true" packagePrefix="Magento\Sniffs\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/dev/tests/static/framework/Magento/TestFramework/Inspection" isTestSource="true" packagePrefix="Magento\TestFramework\Inspection\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/dev/tests/static/framework/Magento/TestFramework/Utility" isTestSource="true" packagePrefix="Magento\TestFramework\Utility\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/dev/tools/Magento/Tools" isTestSource="true" packagePrefix="Magento\Tools\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/lib/internal/Magento/Framework" isTestSource="false" packagePrefix="Magento\Framework\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromClone/setup/src/Magento/Setup" isTestSource="false" packagePrefix="Magento\Setup\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/dev/build/publication/sanity/Magento/Tools/Sanity" isTestSource="true" packagePrefix="Magento\Tools\Sanity\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/dev/tests/static/framework/Magento/Sniffs" isTestSource="true" packagePrefix="Magento\Sniffs\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/dev/tests/static/framework/Magento/TestFramework/Inspection" isTestSource="true" packagePrefix="Magento\TestFramework\Inspection\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/dev/tests/static/framework/Magento/TestFramework/Utility" isTestSource="true" packagePrefix="Magento\TestFramework\Utility\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/dev/tools/Magento/Tools" isTestSource="true" packagePrefix="Magento\Tools\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/dev/tools/performance-toolkit/framework/Magento/ToolkitFramework" isTestSource="true" packagePrefix="Magento\ToolkitFramework\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/lib/internal/Magento/Framework" isTestSource="false" packagePrefix="Magento\Framework\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testFromCreateProject/setup/src/Magento/Setup" isTestSource="false" packagePrefix="Magento\Setup\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testSkeleton/htdocs/lib/internal/Magento/Framework" isTestSource="false" packagePrefix="Magento\Framework\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Framework/Composer/_files/testSkeleton/htdocs/setup/src/Magento/Setup" isTestSource="false" packagePrefix="Magento\Setup\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Setup/Model/_files/testSkeleton/htdocs/lib/internal/Magento/Framework" isTestSource="false" packagePrefix="Magento\Framework\" />
+      <sourceFolder url="file://$MODULE_DIR$/dev/tests/integration/testsuite/Magento/Setup/Model/_files/testSkeleton/htdocs/setup/src/Magento/Setup" isTestSource="false" packagePrefix="Magento\Setup\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/magento/module-inventory-configuration" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem-aws-s3-v3" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpstan/phpdoc-parser" />

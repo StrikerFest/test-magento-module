@@ -7,6 +7,11 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <move element="sample" destination="header.panel.wrapper" as="head.footer" before="header.panel" />
+        <referenceBlock name="page.main.title">
+            <block after="footer_links" name="sample" template="Magento_Theme::html/message.phtml" />
+        </referenceBlock>
+        <!-- Override - Remove compare and wishlist - Modify product.info.extrahint        -->
         <referenceBlock name="view.addto.compare" remove="true" />
         <referenceBlock name="view.addto.wishlist" remove="true" />
         <referenceContainer name="product.info.extrahint">

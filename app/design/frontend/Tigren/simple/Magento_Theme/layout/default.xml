@@ -6,6 +6,7 @@
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <!-- Override - Change logo - Change footer content        -->
         <referenceBlock name="logo">
             <arguments>
                 <argument name="logo_file" xsi:type="string">images/m2-logo.png</argument>
@@ -13,5 +14,20 @@
                 <argument name="logo_width" xsi:type="number">150</argument>
             </arguments>
         </referenceBlock>
+        <referenceContainer name="footer-container">
+            <container>
+                <block after="footer_links" name="sample" template="Magento_Theme::html/message.phtml">
+                    <block name="sample_child" template="Magento_Theme::html/message_child.phtml">
+                        <arguments>
+                            <argument name="title"
+                                      translate="true"
+                                      xsi:type="string">Child title
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </container>
+        </referenceContainer>
+
     </body>
 </page>

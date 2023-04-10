@@ -1,0 +1,7 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<small class="copyright">
+    <h3><?= $escaper->escapeHtml(__('message_child.phtml: That\'s correct my good sir')) ?></h3>
+    <h4><?= $block->escapeHtml(__('message_child.phtml: ') . $block->getData('title'));  ?></h4>
+</small>
