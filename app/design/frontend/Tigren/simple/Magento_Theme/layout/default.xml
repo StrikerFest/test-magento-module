@@ -5,6 +5,9 @@
   -->
 
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="js/hello_world.js" defer="defer"/>
+    </head>
     <body>
         <!-- Override - Change logo - Change footer content        -->
         <referenceBlock name="logo">
@@ -22,6 +25,14 @@
                             <argument name="title"
                                       translate="true"
                                       xsi:type="string">Child title
+                            </argument>
+                            <argument name="jsLayout" xsi:type="array">
+                                <item name="desc"
+                                      translate="true"
+                                      xsi:type="string">This block is the child of sample block</item>
+                                <item name="title"
+                                      translate="true"
+                                      xsi:type="string">Child title 2</item>
                             </argument>
                         </arguments>
                     </block>

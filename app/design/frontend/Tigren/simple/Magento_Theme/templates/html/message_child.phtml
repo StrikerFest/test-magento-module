@@ -1,7 +1,24 @@
 <?php
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright  Copyright (c)  2023.  Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ */
+
 /** @var \Magento\Framework\Escaper $escaper */
+/** @var Magento\Framework\View\Element\Template $block */
 ?>
-<small class="copyright">
-    <h3><?= $escaper->escapeHtml(__('message_child.phtml: That\'s correct my good sir')) ?></h3>
-    <h4><?= $block->escapeHtml(__('message_child.phtml: ') . $block->getData('title'));  ?></h4>
-</small>
+<div data-mage-init='{"theme/hello":<?= $block->getJsLayout('title'); ?>}'>
+    <small class="copyright">
+        <h3><?= $escaper->escapeHtml(__('message_child.phtml: That\'s correct my good sir')) ?></h3>
+        <h4><?= $block->escapeHtml(__('message_child.phtml: ') . $block->getData('title')); ?></h4>
+    </small>
+</div>
+<textarea
+    data-role="input-text"
+    name="comment"
+    id="comment"
+    title="<?= $block->escapeHtmlAttr(__('Comment')) ?>"
+    data-mage-init='{"Magento_Theme/js/validation": {"messagebox":"charNum"}}'
+></textarea>
+<span id="charNum"></span>
